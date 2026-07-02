@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #01040a;
+  /* Fixed, fullscreen cosmic hero background — Earth left / Moon right */
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #e6f7ff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Soft vignette to lift center content contrast while keeping Earth/Moon bright */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -15;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 70% at 50% 45%,
+    rgba(1, 4, 12, 0.55) 0%,
+    rgba(1, 4, 12, 0.2) 45%,
+    transparent 75%
+  );
+}
+
+@layer components {
+  .neon-text {
+    text-shadow: 0 0 6px rgba(79, 227, 255, 0.9), 0 0 18px rgba(79, 227, 255, 0.55);
+  }
+  .glass {
+    background: linear-gradient(
+      160deg,
+      rgba(18, 46, 66, 0.35) 0%,
+      rgba(8, 22, 38, 0.25) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* Thin neon scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 227, 255, 0.4);
+  border-radius: 4px;
+}
